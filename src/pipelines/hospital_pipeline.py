@@ -163,7 +163,6 @@ class HospitalPipeline:
                        F.col('prev'), 'Up')
                  .when(F.col('daily_revenue')
                        F.col('prev'), 'Down')
-                 .otherwise('Same'))
-        save_table(daily,
+                 .otherwise('Same'))        save_table(daily,
             f'{self.GOLD_DB}.daily_trends')
         self.logger.end_layer('gold', daily)
