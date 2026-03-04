@@ -159,10 +159,11 @@ class HospitalPipeline:
                 F.lag('daily_revenue', 1)
                  .over(date_w)) \
             .withColumn('trend',
-                F.when(F.col('daily_revenue') >
-                       F.col('prev'), 'Up')
-                 .when(F.col('daily_revenue')
-                       F.col('prev'), 'Down')
-                 .otherwise('Same'))        save_table(daily,
-            f'{self.GOLD_DB}.daily_trends')
-        self.logger.end_layer('gold', daily)
+                        F.when(F.col('daily_revenue') >
+                               F.col('prev'), 'Up')
+                        .when(F.col('daily_revenue')
+                              F.col('prev'), 'Down')
+                        .otherwise('Same'))
+            save_table(daily,
+                   f'{self.GOLD_DB}.daily_trends')
+            self.logger.end_layer('gold', daily)
